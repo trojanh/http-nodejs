@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
       }), {})
       console.log({normalizedData});
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(normalizedData);
+      res.end(JSON.stringify(normalizedData));
     });
   } else {
     res.end('send a POST request');
