@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
         [curr.split('_')[1]]: data[curr]
       }), {})
       console.log({normalizedData});
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      //res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(normalizedData));
     });
   } else {
