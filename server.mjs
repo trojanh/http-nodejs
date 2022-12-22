@@ -2,13 +2,14 @@ import http from 'http';
 
 const server = http.createServer((req, res) => {
   if (req.method === 'POST') {
-    let body = '';
+    let body = [];
 
     req.on('data', chunk => {
-      body += chunk.toString();
+      body.push(chunk);
     });
 
     req.on('end', () => {
+      body = Buffer.concat(body).toString();
       const data = JSON.parse(body);
       console.log(data);
       res.writeHead(200, { 'Content-Type': 'application/json' });
