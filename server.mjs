@@ -1,22 +1,22 @@
-import { createServer } from 'http';
+const http = require('http');
 
-createServer((req, res) => {
-  console.log("REQUEST ARRIVED", req)
- if(req.method == 'POST'){
-    
-        var jsonString;
+const server = http.createServer((req, res) => {
+  if (req.method === 'POST') {
+    let body = '';
 
-        req.on('data', function (data) {
-            jsonString = JSON.parse(data);
-        });
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
 
-        req.on('end', function () {
-            serverNext(req, res, JSON.stringify(jsonString));
-        });
-  } 
-  else{
-  res.write('Hello World!');
+    req.on('end', () => {
+      const data = JSON.parse(body);
+      console.log(data);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(data));
+    });
+  } else {
+    res.end('send a POST request');
   }
-  res.end()
-  
-}).listen(process.env.PORT);
+});
+
+server.listen(3000);
