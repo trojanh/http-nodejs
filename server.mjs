@@ -1,6 +1,7 @@
 import { createServer } from 'http';
 
 createServer((req, res) => {
+  console.log("REQUEST ARRIVED", req.body, req.method)
   if(req.body){
     console.log({body: req.body})
     res.writeHead(200, {"Content-Type": "application/json"});
