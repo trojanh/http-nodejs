@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       body = Buffer.concat(body).toString();
       const data = JSON.parse(body);
-      console.log({data});
+      console.log({data, body});
       
       const normalizedData = Object.keys(data).filter(t => t.match(/^q\d+_.*$/)).reduce((acc, curr) => ({
         ...acc,
