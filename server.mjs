@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
       
       const normalizedData = Object.keys(data).filter(t => t.match(/^q\d+_.*$/)).reduce((acc, curr) => ({
         ...acc,
-        [curr.split('_')[1]]: normalizedData[curr]
+        [curr.split('_')[1]]: data[curr]
       }), {})
       console.log({normalizedData});
       res.writeHead(200, { 'Content-Type': 'application/json' });
