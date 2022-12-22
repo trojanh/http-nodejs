@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
       const data = JSON.parse(body);
       console.log(data);
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(data);
+      res.end(JSON.stringify(data));
     });
   } else {
     res.end('send a POST request');
